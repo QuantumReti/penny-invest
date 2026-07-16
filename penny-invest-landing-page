@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penny | Find It. Fund It. One Team.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap');
+
+:root{
+  --merlot:#510836;
+  --deep-merlot:#46002D;
+  --strawberry:#D22D4A;
+  --deep-strawberry:#C02441;
+  --teal:#06717B;
+  --deep-teal:#00636B;
+  --turquoise:#24ADA2;
+  --bone:#ECE5E0;
+  --taupe:#DACEC4;
+  --taupe-tint:#E2DAD3;
+  --white:#FFFFFF;
+  --text:#333333;
+  --muted:#7A6E76;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  color:var(--text);
+  background:var(--white);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.6;
+}
+.headline{
+  font-family:'Oswald', Impact, 'Arial Narrow', sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+.eyebrow{
+  font-family:Arial, sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+}
+a{ text-decoration:none; color:inherit; }
+img{ max-width:100%; display:block; }
+.wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+.btn{
+  display:inline-block;
+  font-family:Arial, sans-serif;
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  padding:16px 34px;
+  border-radius:4px;
+  border:2px solid transparent;
+  transition:transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  cursor:pointer;
+}
+.btn-primary{
+  background:var(--strawberry);
+  color:var(--white);
+  box-shadow:0 8px 24px rgba(210,45,74,0.35);
+}
+.btn-primary:hover{ background:var(--deep-strawberry); transform:translateY(-2px); }
+.btn-outline{
+  background:transparent;
+  color:var(--white);
+  border-color:rgba(255,255,255,0.5);
+}
+.btn-outline:hover{ border-color:#fff; }
+.btn-outline-dark{
+  background:transparent;
+  color:var(--merlot);
+  border-color:var(--merlot);
+}
+.btn-outline-dark:hover{ background:var(--merlot); color:var(--white); }
+
+/* ---------- NAV ---------- */
+.nav{
+  position:sticky; top:0; z-index:50;
+  background:var(--white);
+  border-bottom:1px solid var(--taupe);
+}
+.nav .wrap{
+  display:flex; align-items:center; justify-content:space-between;
+  height:76px;
+}
+.brand{ display:flex; align-items:center; gap:12px; }
+.brand-mark{
+  width:38px; height:38px; border-radius:50%;
+  background:var(--strawberry);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.brand-mark span{
+  font-family:'Oswald', Impact, sans-serif;
+  font-weight:700; font-size:19px; color:#fff;
+}
+.brand-lockup{ line-height:1.15; }
+.brand-lockup .l1{
+  font-family:Arial, sans-serif; font-size:15px; font-weight:700;
+  letter-spacing:0.2em; color:var(--merlot);
+}
+.brand-lockup .l2{
+  font-family:Arial, sans-serif; font-size:9px; font-weight:600;
+  letter-spacing:0.22em; color:var(--strawberry); margin-top:2px;
+}
+.nav-links{ display:flex; align-items:center; gap:36px; }
+.nav-links a.navlink{
+  font-family:Arial, sans-serif; font-size:13px; font-weight:700;
+  letter-spacing:0.05em; text-transform:uppercase; color:var(--text);
+  padding-bottom:4px; border-bottom:2px solid transparent;
+  transition:border-color 0.15s ease, color 0.15s ease;
+}
+.nav-links a.navlink:hover{ color:var(--strawberry); border-color:var(--strawberry); }
+.nav-cta{ display:flex; }
+.nav-toggle{ display:none; }
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  background:var(--merlot);
+  overflow:hidden;
+  padding:96px 0 110px;
+}
+.hero::before{
+  content:"";
+  position:absolute; top:-220px; right:-160px;
+  width:520px; height:520px; border-radius:50%;
+  background:var(--deep-merlot);
+  opacity:0.55;
+}
+.hero::after{
+  content:"";
+  position:absolute; bottom:-260px; left:-140px;
+  width:440px; height:440px; border-radius:50%;
+  background:var(--strawberry);
+  opacity:0.10;
+}
+.hero .wrap{ position:relative; z-index:2; }
+.hero-inner{ max-width:700px; }
+.hero .eyebrow{ color:var(--strawberry); margin-bottom:18px; }
+.hero h1{
+  color:#fff; font-size:52px; line-height:1.08; margin-bottom:22px;
+}
+.hero p.lead{
+  color:var(--bone); font-size:17px; line-height:1.8; margin-bottom:36px;
+  max-width:560px;
+}
+.hero-ctas{ display:flex; align-items:center; gap:28px; flex-wrap:wrap; }
+.hero-ctas .link-secondary{
+  color:#fff; font-size:14px; font-weight:700; letter-spacing:0.04em;
+  text-transform:uppercase; border-bottom:2px solid rgba(255,255,255,0.4);
+  padding-bottom:4px; transition:border-color 0.15s ease;
+}
+.hero-ctas .link-secondary:hover{ border-color:#fff; }
+
+/* value chip strip */
+.chips{ background:var(--deep-merlot); }
+.chips .wrap{
+  display:flex; flex-wrap:wrap; gap:0;
+  padding:0;
+}
+.chip{
+  flex:1; min-width:220px;
+  padding:22px 24px;
+  border-right:1px solid rgba(255,255,255,0.12);
+  text-align:center;
+}
+.chip:last-child{ border-right:none; }
+.chip .num{
+  font-family:'Oswald', Impact, sans-serif; font-weight:600;
+  font-size:12px; letter-spacing:0.18em; color:var(--turquoise);
+  text-transform:uppercase; display:block; margin-bottom:6px;
+}
+.chip .lbl{
+  font-family:Arial, sans-serif; font-size:14.5px; font-weight:700; color:#fff;
+}
+
+/* ---------- SECTION SHARED ---------- */
+section{ padding:96px 0; }
+.section-head{ max-width:640px; margin-bottom:56px; }
+.section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+.section-head .eyebrow{ color:var(--strawberry); margin-bottom:14px; }
+.section-head h2{ color:var(--merlot); font-size:36px; line-height:1.15; margin-bottom:16px; }
+.section-head p{ color:var(--muted); font-size:15.5px; line-height:1.75; }
+
+/* ---------- HOW IT WORKS ---------- */
+.how{ background:var(--bone); }
+.steps{
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:28px;
+}
+.step-card{
+  background:var(--white);
+  border:1px solid var(--taupe);
+  border-radius:6px;
+  padding:34px 30px;
+}
+.step-num{
+  width:44px; height:44px; border-radius:50%;
+  background:var(--turquoise);
+  color:#fff; font-family:'Oswald', Impact, sans-serif; font-weight:700;
+  font-size:18px; display:flex; align-items:center; justify-content:center;
+  margin-bottom:20px;
+}
+.step-card h3{
+  font-family:'Oswald', Impact, sans-serif; font-weight:700; text-transform:uppercase;
+  font-size:17px; color:var(--merlot); margin-bottom:10px; letter-spacing:0.3px;
+}
+.step-card p{ color:var(--text); font-size:14.5px; line-height:1.75; }
+
+/* ---------- WHY PENNY ---------- */
+.why{ background:var(--white); }
+.why-banner{
+  background:var(--merlot);
+  border-radius:8px;
+  padding:56px 48px;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:56px;
+}
+.why-banner::after{
+  content:"";
+  position:absolute; top:-140px; right:-120px;
+  width:340px; height:340px; border-radius:50%;
+  background:var(--deep-merlot); opacity:0.6;
+}
+.why-banner-inner{ position:relative; z-index:2; max-width:680px; }
+.why-banner .eyebrow{ color:var(--strawberry); margin-bottom:16px; }
+.why-banner h2{ color:#fff; font-size:30px; line-height:1.2; margin-bottom:18px; }
+.why-banner p{ color:var(--bone); font-size:15.5px; line-height:1.85; }
+
+.features{
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:36px;
+}
+.feature{ border-top:3px solid var(--teal); padding-top:20px; }
+.feature h4{
+  font-family:'Oswald', Impact, sans-serif; font-weight:700; text-transform:uppercase;
+  font-size:15px; color:var(--merlot); margin-bottom:10px; letter-spacing:0.3px;
+}
+.feature p{ color:var(--muted); font-size:14px; line-height:1.7; }
+
+/* ---------- BOOKING ---------- */
+.booking{ background:var(--bone); }
+.booking-card{
+  background:#fff;
+  border:1px solid var(--taupe);
+  border-radius:8px;
+  padding:12px;
+  box-shadow:0 12px 40px rgba(81,8,54,0.08);
+}
+.booking-frame-wrap{ min-height:640px; border-radius:4px; overflow:hidden; }
+.booking-fallback{
+  text-align:center; margin-top:28px;
+}
+.booking-fallback p{ color:var(--muted); font-size:13.5px; margin-bottom:14px; }
+
+/* ---------- FOOTER ---------- */
+footer{
+  background:var(--deep-merlot);
+  padding:48px 0 32px;
+}
+.footer-top{
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:24px;
+  padding-bottom:32px; margin-bottom:24px;
+  border-bottom:1px solid rgba(255,255,255,0.12);
+}
+.footer-brand{ display:flex; align-items:center; gap:12px; }
+.footer-brand .brand-lockup .l1{ color:#fff; }
+.footer-links{ display:flex; gap:28px; flex-wrap:wrap; }
+.footer-links a{
+  font-family:Arial, sans-serif; font-size:12.5px; font-weight:700;
+  letter-spacing:0.05em; text-transform:uppercase; color:var(--bone);
+}
+.footer-links a:hover{ color:var(--strawberry); }
+.footer-bottom{
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:12px;
+}
+.footer-bottom span{
+  font-family:Arial, sans-serif; font-size:11px; color:var(--taupe);
+  letter-spacing:0.05em;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px){
+  .hero h1{ font-size:38px; }
+  .steps{ grid-template-columns:1fr; }
+  .features{ grid-template-columns:1fr; }
+  .section-head h2{ font-size:28px; }
+  .why-banner{ padding:40px 26px; }
+}
+@media (max-width: 720px){
+  .nav-links{ display:none; }
+  .chip{ flex:1 1 50%; border-right:none; border-bottom:1px solid rgba(255,255,255,0.12); }
+  section{ padding:64px 0; }
+  .hero{ padding:64px 0 72px; }
+  .hero h1{ font-size:32px; }
+  .booking-frame-wrap{ min-height:560px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap">
+    <a href="#top" class="brand">
+      <span class="brand-mark"><span>P</span></span>
+      <span class="brand-lockup">
+        <span class="l1">PENNY</span>
+        <span class="l2">FINANCE &amp; BUYERS AGENTS</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a class="navlink" href="#how-it-works">How It Works</a>
+      <a class="navlink" href="#why-penny">Why Penny</a>
+      <a class="navlink" href="#booking">Book a Call</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#booking" class="btn btn-outline-dark">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="eyebrow">Property + Finance, One Team</div>
+      <h1 class="headline">Find The Right Property. Fund It Right Too.</h1>
+      <p class="lead">Penny brings buyer's agents and mortgage brokers together under one roof. We help you find the right property, then structure the finance to match, so nothing gets lost between the two.</p>
+      <div class="hero-ctas">
+        <a href="#booking" class="btn btn-primary">Book a Call</a>
+        <a href="#how-it-works" class="link-secondary">See how it works</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- VALUE CHIPS -->
+<div class="chips">
+  <div class="wrap">
+    <div class="chip">
+      <span class="num">Buyer's Agents</span>
+      <span class="lbl">We find and negotiate the property</span>
+    </div>
+    <div class="chip">
+      <span class="num">Mortgage Brokers</span>
+      <span class="lbl">We structure and secure the finance</span>
+    </div>
+    <div class="chip">
+      <span class="num">One Team</span>
+      <span class="lbl">One file, one point of contact</span>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how-it-works">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">How It Works</div>
+      <h2 class="headline">Three Steps From Enquiry To Keys</h2>
+      <p>Whether you're buying your first home, adding to your investment portfolio, or scoping out your next development site, the process starts the same way.</p>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Book A Call</h3>
+        <p>Tell us what you're after and where you're at. We read through it before we speak so the call is worth your time.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>We Map The Numbers</h3>
+        <p>Budget, borrowing power, timeline, and what you're actually trying to buy and by when. Property and finance, worked out together.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>We Find It And Fund It</h3>
+        <p>One team searches the market and structures the finance side by side, so you get a clear shortlist and a number you can act on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PENNY -->
+<section class="why" id="why-penny">
+  <div class="wrap">
+    <div class="why-banner">
+      <div class="why-banner-inner">
+        <div class="eyebrow">Why Penny</div>
+        <h2 class="headline">Find It. Fund It. One Team.</h2>
+        <p>Penny brings buyer's agents and mortgage brokers together under one roof. We help you find the right property, then structure the finance to match, so nothing gets lost between the two.</p>
+      </div>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <h4>Buyer's Agents On Your Side</h4>
+        <p>We search, shortlist and negotiate on your behalf, whether you're after a first home, an investment property, or a development site.</p>
+      </div>
+      <div class="feature">
+        <h4>In-House Finance</h4>
+        <p>Your borrowing power and loan structure are worked out by the same team handling the property search, not a separate broker down the line.</p>
+      </div>
+      <div class="feature">
+        <h4>One Point Of Contact</h4>
+        <p>One file, one team, one person to call. You're not repeating yourself to a different specialist at every stage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Book A Call</div>
+      <h2 class="headline">Let's Talk Numbers</h2>
+      <p>Pick a time that works. We'll go through budget, borrowing power, and what you're actually trying to buy.</p>
+    </div>
+    <div class="booking-card">
+      <div class="booking-frame-wrap">
+        <iframe src="https://api.leadconnectorhq.com/widget/booking/2dUXuWUVQp4sSoXab7DM" style="width: 100%; height: 640px; border:none; overflow: hidden;" scrolling="no" id="2dUXuWUVQp4sSoXab7DM_1784166263925"></iframe>
+      </div>
+    </div>
+    <div class="booking-fallback">
+      <p>Widget not loading? Open the booking page directly.</p>
+      <a href="https://api.leadconnectorhq.com/widget/bookings/michael-simms-penny-invest" target="_blank" rel="noopener" class="btn btn-outline-dark">Open Booking Page</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="brand-mark"><span>P</span></span>
+        <span class="brand-lockup">
+          <span class="l1">PENNY</span>
+          <span class="l2">FINANCE &amp; BUYERS AGENTS</span>
+        </span>
+      </div>
+      <div class="footer-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#why-penny">Why Penny</a>
+        <a href="#booking">Book a Call</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Penny Finance &copy; 2026</span>
+      <span>pennyfinance.com.au</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+</body>
+</html>
